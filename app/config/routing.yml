@@ -1,0 +1,18 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/v1
+
+# It is route for the Demo Entity
+app_demo:
+    type: rest
+    resource: AppBundle\Controller\api\DemoController
+    prefix:   /api
+    options:
+        expose: true

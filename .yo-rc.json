@@ -1,0 +1,12 @@
+{
+  "generator-symfony-rest-angular": {
+    "project_name": "SolarBear",
+    "project_description": "Demo App for Solar Bear ",
+    "git_repository": "https://github.com/miguelplazasr/SolarBearDemo.git",
+    "author_name": "Miguel Plazas",
+    "database_name": "solarbeardb",
+    "database_user": "root",
+    "database_password": "null",
+    "secret_token": "who2bjR0TMoHXHk4bMNWXzF05ByS71uJ"
+  }
+}

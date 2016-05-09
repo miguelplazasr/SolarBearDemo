@@ -1,0 +1,23 @@
+parameters:
+    # List Entity class
+    app.entity.demo: AppBundle\Entity\Demo
+
+    # List Handlers class
+    app.handler.demo: AppBundle\Handler\DemoHandler
+
+    # List FormType class
+    app.form.type.demo: AppBundle\Form\DemoType
+
+services:
+
+    app.entity_manager:
+        abstract: true
+        calls:
+            - [ setDocumentManager, [ "@doctrine.orm.entity_manager" ] ]
+            - [ setFormFactory, [ "@form.factory" ] ]
+
+    app.handler.demo:
+        class: "%app.handler.demo%"
+        parent: app.entity_manager
+        arguments: [ "%app.entity.demo%", "%app.form.type.demo%" ]
+
