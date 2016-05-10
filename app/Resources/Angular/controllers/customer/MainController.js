@@ -1,6 +1,6 @@
-/**
- * Created by miguelplazas on 9/05/16.
- */
+(function() {
+    'use strict';
+
 angular.
     module('SolarBearApp').
     controller('Customer.MainCtrl', Controller );
@@ -26,7 +26,14 @@ function Controller($scope, Restangular) {
                 vm.allCustomers = customers;
                 console.log(vm.allCustomers);
             });
-
-
     }
+
+    vm.topDirections = ['left', 'up'];
+    vm.bottomDirections = ['down', 'right'];
+    vm.isOpen = true;
+    vm.selectedMode = 'md-scale';
+    vm.selectedDirection = 'left';
+
 }
+
+})();

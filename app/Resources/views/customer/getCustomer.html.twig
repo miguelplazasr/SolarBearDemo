@@ -1,8 +1,20 @@
-<md-list>
-    <md-list-item class="md-2-line" ng-repeat="customer in vm.allCustomers">
-        <img ng-src="" class="md-avatar" alt="[[ customer.first_name ]] [[ customer.last_name ]]" />
-        <div class="md-list-item-text">
-            <h3>[[ customer.first_name ]] [[ customer.last_name ]]</h3>
-        </div>
-    </md-list-item>
-</md-list>
+<md-content>
+    <md-list>
+        <md-list-item class="md-3-line" ng-repeat="customer in vm.allCustomers">
+            <img ng-src="{{ asset('assets/img/male.png') }}" class="md-avatar"
+                 alt="[[ customer.first_name ]] [[ customer.last_name ]]"/>
+
+            <div class="md-list-item-text">
+                <h3>[[ customer.first_name ]] [[ customer.last_name ]]</h3>
+                <h4>[[ customer.address ]]</h4>
+            </div>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-list>
+</md-content>
+
+<div layout="row" class="relative" layout-fill role="main">
+    <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
+        <ng-md-icon icon="add"></ng-md-icon>
+    </md-button>
+</div>

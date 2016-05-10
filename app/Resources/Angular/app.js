@@ -8,6 +8,7 @@
 var app = angular.module('SolarBearApp',
     [
         'ngMaterial',
+        'ngMdIcons',
         'ngMessages',
         'ui.router',
         'ngCookies',

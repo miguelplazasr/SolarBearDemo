@@ -16,7 +16,7 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         //return $this->redirectToRoute('nelmio_api_doc_index', array(), 301);
 
-        return $this->render('layout.html.twig');
+        return $this->render('::layout_01.html.twig');
     }
 
     /**
