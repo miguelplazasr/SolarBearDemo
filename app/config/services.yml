@@ -1,23 +1,34 @@
 parameters:
     # List Entity class
     app.entity.demo: AppBundle\Entity\Demo
+    app.entity.customer: AppBundle\Entity\Customer
 
     # List Handlers class
     app.handler.demo: AppBundle\Handler\DemoHandler
+    app.handler.customer: AppBundle\Handler\CustomerHandler
 
     # List FormType class
     app.form.type.demo: AppBundle\Form\DemoType
+    app.form.type.customer: AppBundle\Form\CustomerType
 
 services:
 
     app.entity_manager:
         abstract: true
         calls:
-            - [ setDocumentManager, [ "@doctrine.orm.entity_manager" ] ]
+            - [ setEntityManager, [ "@doctrine.orm.entity_manager" ] ]
             - [ setFormFactory, [ "@form.factory" ] ]
 
     app.handler.demo:
         class: "%app.handler.demo%"
         parent: app.entity_manager
         arguments: [ "%app.entity.demo%", "%app.form.type.demo%" ]
+
+    # Customer Handler
+    app.handler.customer:
+        class: "%app.handler.customer%"
+        parent: app.entity_manager
+        arguments: ["%app.entity.customer%", "%app.form.type.customer%" ]
+
+
 

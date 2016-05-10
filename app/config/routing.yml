@@ -13,6 +13,13 @@ NelmioApiDocBundle:
 app_demo:
     type: rest
     resource: AppBundle\Controller\api\DemoController
+    prefix:   /apinsnsnsnsns
+    options:
+        expose: true
+
+app_customer:
+    type: rest
+    resource: AppBundle\Controller\CustomerController
     prefix:   /api
     options:
         expose: true

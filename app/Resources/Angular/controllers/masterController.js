@@ -2,7 +2,7 @@
  * Created by miguelplazas on 30/04/16.
  */
 
-angular.module('app')
+angular.module('SolarBearApp')
     .controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
 
 function MasterCtrl($scope, $cookieStore) {

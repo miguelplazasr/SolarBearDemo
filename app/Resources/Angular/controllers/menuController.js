@@ -2,7 +2,7 @@
  * Created by miguelplazas on 1/05/16.
  */
 
-angular.module('app').controller('MenuCtrl', [
+angular.module('SolarBearApp').controller('MenuCtrl', [
     '$scope',
     MenuCtrl
 ]);

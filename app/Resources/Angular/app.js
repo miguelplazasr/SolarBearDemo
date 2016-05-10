@@ -5,18 +5,41 @@
 
 "use strict";
 
-var app = angular.module('app',
+var app = angular.module('SolarBearApp',
     [
-        'ui.bootstrap',
+        'ngMaterial',
+        'ngMessages',
         'ui.router',
-        'ui.navbar',
         'ngCookies',
         'restangular'
     ]);
 
+app.config(function ($interpolateProvider) {
+    $interpolateProvider.startSymbol('[[');
+    $interpolateProvider.endSymbol(']]');
+});
 
-app.config(function(RestangularProvider) {
-    RestangularProvider.setBaseUrl('/api/v1');
+
+app.config(function (RestangularProvider) {
+    RestangularProvider.setBaseUrl('/api');
+
+    //RestangularProvider.setDefaultHttpFields({cache: true});
+
+    /*
+    RestangularProvider.addResponseInterceptor(function (data, operation, what, url, response, deferred) {
+        var newResponse = response;
+
+        console.log(data);
+
+        if (operation === "getList") {
+            angular.forEach(newResponse, function (value, key) {
+                newResponse[key].originalElement = angular.copy(value);
+            });
+        } else {
+            newResponse.originalElement = angular.copy(response);
+        }
+        return newResponse;
+    });*/
 });
 
 /**
@@ -25,7 +48,7 @@ app.config(function(RestangularProvider) {
 app.config([
     '$stateProvider',
     '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
+    function ($stateProvider, $urlRouterProvider) {
 
         // For unmatched routes
         $urlRouterProvider.otherwise('/');
@@ -35,22 +58,44 @@ app.config([
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'tpl/default/index.html.twig',
-                controller: 'MasterCtrl'
+                templateUrl: '/',
             })
 
-            .state('tables', {
-                url: '/tables',
-                template: '<h2>table</h2>'
+            .state('customer', {
+                url: '/customer',
+                templateUrl: '/api/customers',
+                controller: "Customer.MainCtrl",
+                controllerAs: "vm"
             })
 
             /*
-            .state('categories', {
-                url: '/categories',
-                templateUrl: './categories',
-                controller: 'CategoryCtrl'
-            })
-            */
+             .state('categories', {
+             url: '/categories',
+             templateUrl: './categories',
+             controller: 'CategoryCtrl'
+             })
+             */
         ;
     }
 ]);
+
+
+/* Theming Configuration */
+app.config(function ($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+        .primaryPalette('blue', {
+            'default': '900'
+        })
+        .accentPalette('green', {
+            'default': '800'
+        })
+});
+
+
+app.run(function ($rootScope) {
+
+    // track current state for active tab
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+        $rootScope.currentState = toState.name;
+    });
+});

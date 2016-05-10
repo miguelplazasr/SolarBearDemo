@@ -18,8 +18,7 @@ module.exports = function (grunt) {
             app: {
                 files: {
                     'app/Resources/public/min-safe/js/controllers.js': [
-                        'app/Resources/Angular/controllers/masterController.js',
-                        'app/Resources/Angular/controllers/menuController.js'
+                        'app/Resources/Angular/controllers/customer/MainController.js'
                     ],
                     'app/Resources/public/min-safe/app.js': ['app/Resources/Angular/app.js']
                 }
@@ -59,16 +58,25 @@ module.exports = function (grunt) {
         },
 
         uglify : {
-            
+
             js: {
                 files: {
                     'web/assets/js/lib.min.js': ['app/Resources/public/assets/js/lib.js']
                 }
             },
-            
+
             app: {
                 files: {
                     'web/assets/js/app.min.js': ['app/Resources/public/app/app.js']
+                }
+            }
+        },
+
+        sass: {
+            dist: {
+                files: {
+                    'app/Resources/public/assets/css/lib/main.css': 'app/Resources/template/sass/main.scss'
+
                 }
             }
         },
@@ -78,41 +86,40 @@ module.exports = function (grunt) {
             options: {
                 stripBanners: true
             },
+
             css: {
                 src: [
-                    'app/Resources/public/assets/css/lib/bootstrap.css',
-                    'app/Resources/public/assets/css/lib/bootstrap-theme.css',
                     'app/Resources/public/assets/css/lib/font-awesome.css',
-                    'app/Resources/public/assets/css/lib/ui-bootstrap-csp.css',
+                    'app/Resources/public/assets/css/lib/angular-material.css',
                     'app/Resources/public/assets/css/lib/animate.css',
                     'app/Resources/public/assets/css/lib/c3.css',
                     'app/Resources/public/assets/css/lib/ionicons.css',
+                    'app/Resources/public/assets/css/lib/main.css'
                 ],
                 dest: 'app/Resources/public/assets/css/lib.css'
             },
             js : {
                 src : [
-                    'app/Resources/public/assets/js/lib/jquery.js',
-                    'app/Resources/public/assets/js/lib/bootstrap.js',
                     'app/Resources/public/assets/js/lib/angular.js',
                     'app/Resources/public/assets/js/lib/angular-ui-router.js',
-                    'app/Resources/public/assets/js/lib/ui-bootstrap.js',
-                    'app/Resources/public/assets/js/lib/ui-bootstrap-tpls.js',
                     'app/Resources/public/assets/js/lib/angular-animate.js',
+                    'app/Resources/public/assets/js/lib/angular-aria.js',
+                    'app/Resources/public/assets/js/lib/angular-messages.js',
                     'app/Resources/public/assets/js/lib/angular-chart.js',
                     'app/Resources/public/assets/js/lib/angular-resource.js',
                     'app/Resources/public/assets/js/lib/angular-route.js',
                     'app/Resources/public/assets/js/lib/angular-touch.js',
+                    'app/Resources/public/assets/js/lib/angular-material.js',
                     'app/Resources/public/assets/js/lib/angular-cookies.js',
                     'app/Resources/public/assets/js/lib/lodash.js',
                     'app/Resources/public/assets/js/lib/restangular.js',
                     'app/Resources/public/assets/js/lib/c3.js',
                     'app/Resources/public/assets/js/lib/d3.js',
-                    'app/Resources/public/assets/js/lib/bootstrap-ui-navbar.js',
                     'app/Resources/public/assets/js/lib/ui-navbar.js'
                 ],
                 dest: 'app/Resources/public/assets/js/lib.js'
             },
+
             app: {
                 src: ['app/Resources/public/min-safe/app.js', 'app/Resources/public/min-safe/js/*.js'],
                 dest: 'app/Resources/public/app/app.js'
@@ -145,7 +152,7 @@ module.exports = function (grunt) {
             ngAnnotate: {
                 files: 'app/Resources/Angular/**/*.js',
                 tasks: "ngAnnotate"
-            },
+            }
 
         }
 
@@ -158,11 +165,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-ng-annotate');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
 
 
-    grunt.registerTask('default', ['bower', 'copy', "ngAnnotate", 'concat', 'cssmin', 'uglify']);
+    grunt.registerTask('full', ['bower', 'copy', 'ngAnnotate', 'concat', 'cssmin', 'uglify']);
+    grunt.registerTask('default', ['ngAnnotate', 'concat:app', 'uglify:app']);
 
 };

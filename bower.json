@@ -100,6 +100,16 @@
     "ui-navbar": {
       "js": "release/js/ui-navbar.js",
       "css": "release/css/ui-navbar.css"
+    },
+    "angular-aria": {
+      "js": "angular-aria.js"
+    },
+    "angular-messages": {
+      "js": "angular-messages.js"
+    },
+    "angular-material": {
+      "js": "angular-material.js",
+      "css": "angular-material.css"
     }
   }
 }
