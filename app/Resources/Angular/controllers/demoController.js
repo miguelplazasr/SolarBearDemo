@@ -69,6 +69,7 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         },
     ];
     $scope.alert = '';
+
     $scope.showListBottomSheet = function($event) {
         $scope.alert = '';
         $mdBottomSheet.show({

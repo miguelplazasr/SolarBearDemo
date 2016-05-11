@@ -59,11 +59,22 @@ app.config([
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: '/',
+                templateUrl: '/main',
+                controller: 'Home.MainCtrl',
+                controllerAs: 'vm'
+
             })
+            /*
+            .state('home.sidebar', {
+                url: '/sidenavbar',
+                templateUrl: '/sidenavbar',
+                controller: "MainCtrl",
+                controllerAs: "vm"
+            })
+            */
 
             .state('customer', {
-                url: '/customer',
+                url: '/',
                 templateUrl: '/api/customers',
                 controller: "Customer.MainCtrl",
                 controllerAs: "vm"
@@ -80,9 +91,27 @@ app.config([
     }
 ]);
 
+app.config(function($mdThemingProvider) {
+    var customBlueMap = 		$mdThemingProvider.extendPalette('blue', {
+        'contrastDefaultColor': 'light',
+        'contrastDarkColors': ['50'],
+        '50': 'ffffff'
+    });
+    $mdThemingProvider.definePalette('customBlue', customBlueMap);
+    $mdThemingProvider.theme('default')
+        .primaryPalette('customBlue', {
+            'default': '900',
+            'hue-1': '50'
+        })
+        .accentPalette('green', {
+            'default': '800'
+        });
+    $mdThemingProvider.theme('input', 'default')
+        .primaryPalette('grey')
+});
 
 /* Theming Configuration */
-app.config(function ($mdThemingProvider) {
+/*app.config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('default')
         .primaryPalette('blue', {
             'default': '900'
@@ -91,12 +120,4 @@ app.config(function ($mdThemingProvider) {
             'default': '800'
         })
 });
-
-
-app.run(function ($rootScope) {
-
-    // track current state for active tab
-    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-        $rootScope.currentState = toState.name;
-    });
-});
+*/

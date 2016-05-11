@@ -20,11 +20,11 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/tables", name="tables", options={"expose"=true})
+     * @Route("/main", name="main", options={"expose"=true})
      */
     public function tablesAction(){
 
-        return array('title'=>'pagina');
+        return $this->render(':default:_main.html.twig');
 
     }
 }
