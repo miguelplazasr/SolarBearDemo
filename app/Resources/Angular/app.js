@@ -79,13 +79,33 @@ app.config([
                 controller: "Customer.MainCtrl",
                 controllerAs: "vm"
             })
+            
+            .state('home.customer.new', {
+                url: '/new',
+                controller: "Customer.NewCtrl",
+                controllerAs: "vm",
+                onEnter: function($mdDialog) {
+                    var ev = null; // this should be the $event 
+                    $mdDialog.show({
+                            //controller: 'Customer.NewCtrl',
+                            templateUrl: '/api/customers/new.html',
+                            parent: angular.element(document.body),
+                            targetEvent: ev,
+                            clickOutsideToClose: true,
+                    }
+                    );
+                }
+            })
 
+            /*
             .state('home.customer.new', {
                 url: '/new',
                 templateUrl: '/api/customers/new',
                 controller: "Customer.NewCtrl",
                 controllerAs: "vm"
             })
+            */
+
 
             /*
              .state('categories', {

@@ -1,10 +1,29 @@
-{{ form_start(form, {'attr': {'ng-submit': 'saveAddress(newAddress)'}}) }}
+<md-dialog aria-label="Mango (Fruit)" ng-cloak ng-controller="Customer.MainCtrl">
 
-<div class="box-body">
-    {{ form_widget(form) }}
 
-</div><!-- /.box-body -->
+    {{ form_start(form, {'attr': {'ng-submit': 'saveAddress(newAddress)'}}) }}
 
-<div class="box-footer">
-    <button type="submit" class="btn btn-primary" >Submit</button>
-</div>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Mango (Fruit)</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+
+            {{ form_widget(form) }}
+        </div>
+
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <md-button type="submit" class="btn btn-primary">Submit</md-button>
+        <md-button ng-click="vm.cancel()">Cancel</md-button>
+        <span flex></span>
+    </md-dialog-actions>
+    </md-dialog-content>
+</md-dialog>
