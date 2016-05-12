@@ -11,7 +11,8 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         {
             link : '',
             title: 'Dashboard',
-            icon: 'dashboard'
+            icon: 'dashboard',
+            sref: 'home.customer'
         },
         {
             link : '',

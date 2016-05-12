@@ -73,10 +73,17 @@ app.config([
             })
             */
 
-            .state('customer', {
-                url: '/',
+            .state('home.customer', {
+                url: '/customer',
                 templateUrl: '/api/customers',
                 controller: "Customer.MainCtrl",
+                controllerAs: "vm"
+            })
+
+            .state('home.customer.new', {
+                url: '/new',
+                templateUrl: '/api/customers/new',
+                controller: "Customer.NewCtrl",
                 controllerAs: "vm"
             })
 
