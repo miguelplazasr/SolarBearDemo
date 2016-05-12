@@ -5,10 +5,10 @@
 
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>Mango (Fruit)</h2>
+            <h2>[[ vm.title ]]</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="cancel()">
-                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                <md-icon md-svg-src="" aria-label="Close dialog"></md-icon>
             </md-button>
         </div>
     </md-toolbar>
@@ -22,7 +22,9 @@
     </md-dialog-content>
     <md-dialog-actions layout="row">
         <md-button type="submit" class="btn btn-primary">Submit</md-button>
-        <md-button ng-click="vm.cancel()">Cancel</md-button>
+        <md-button ng-click="cancel()">Cancel</md-button>
+        <md-button ng-click="vm.cancel()">Cancel vm</md-button>
+        <md-button ng-click="vm.closeDialog()"> Close</md-button>
         <span flex></span>
     </md-dialog-actions>
     </md-dialog-content>

@@ -19,7 +19,8 @@ module.exports = function (grunt) {
                 files: {
                     'app/Resources/public/min-safe/js/controllers.js': [
                         'app/Resources/Angular/controllers/masterController.js',
-                        'app/Resources/Angular/controllers/customer/MainController.js'
+                        'app/Resources/Angular/controllers/customer/MainController.js',
+                        'app/Resources/Angular/controllers/customer/NewController.js'
                     ],
                     'app/Resources/public/min-safe/app.js': ['app/Resources/Angular/app.js']
                 }

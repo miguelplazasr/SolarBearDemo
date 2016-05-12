@@ -15,4 +15,5 @@
 /vendor/
 /composer.phar
 /bower_components/
+/npm-debug.log
 node_modules/
