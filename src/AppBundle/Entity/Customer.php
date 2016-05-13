@@ -102,6 +102,13 @@ class Customer {
     protected $email;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Appointment", mappedBy="customer", cascade={"persist", "remove"})
+     */
+    Private $appointments;
+
+    
+
+    /**
      * @var datetime $created
      *
      * @ORM\Column( type="datetime")
