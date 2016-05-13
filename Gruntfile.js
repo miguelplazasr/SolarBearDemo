@@ -17,11 +17,12 @@ module.exports = function (grunt) {
             },
             app: {
                 files: {
-                    //'app/Resources/public/min-safe/js/controllers.js': [
-                    //    'app/Resources/Angular/controllers/customer/MainController.js',
-                    //    'app/Resources/Angular/controllers/demoController.js'
-                    //],
-                    'app/Resources/public/min-safe/app.js': ['app/Resources/Angular/controllers/demoController.js']
+                    'app/Resources/public/min-safe/js/controllers.js': [
+                        'app/Resources/Angular/controllers/masterController.js',
+                        'app/Resources/Angular/controllers/customer/MainController.js',
+                        'app/Resources/Angular/controllers/customer/NewController.js'
+                    ],
+                    'app/Resources/public/min-safe/app.js': ['app/Resources/Angular/app.js']
                 }
             }
         },
@@ -146,9 +147,9 @@ module.exports = function (grunt) {
         },
 
         watch: {
-            ngAnnotate: {
+            angularJs: {
                 files: 'app/Resources/Angular/**/*.js',
-                tasks: "ngAnnotate"
+                tasks: ['ngAnnotate', 'concat:app', 'uglify:app']
             }
 
         }
@@ -169,6 +170,6 @@ module.exports = function (grunt) {
 
 
     grunt.registerTask('full', ['bower', 'copy', 'ngAnnotate', 'concat', 'cssmin', 'uglify']);
-    grunt.registerTask('default', ['ngAnnotate', 'concat:app', 'uglify:app']);
+    grunt.registerTask('default', ['ngAnnotate', 'concat:app', 'uglify:app', 'watch']);
 
 };

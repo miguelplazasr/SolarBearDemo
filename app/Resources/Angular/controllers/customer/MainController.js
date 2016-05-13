@@ -1,39 +1,29 @@
-(function() {
+(function () {
     'use strict';
 
-angular.
-    module('SolarBearApp').
-    controller('Customer.MainCtrl', Controller );
+    angular.module('SolarBearApp').controller('Customer.MainCtrl', Controller);
 
-function Controller($scope, Restangular) {
+    function Controller( Restangular) {
 
-    var vm = this;
-    var baseCustomer = Restangular.all('customers');
+        var vm = this;
+        var baseCustomer = Restangular.all('customers');
+        
+        initController();
+        
+        function initController() {
 
-    initController();
+            loadCustomers();
+            // reload alerts when updated
+            //vm.$on('alerts-updated', loadCustomers);
+        }
 
-    function initController() {
+        function loadCustomers() {
+            baseCustomer.getList()
+                .then(function (customers) {
+                    // returns a list of users
+                    vm.allCustomers = customers;
+                });
+        }
 
-        loadCustomers();
-        // reload alerts when updated
-        $scope.$on('alerts-updated', loadCustomers);
     }
-
-    function loadCustomers(){
-        baseCustomer.getList()
-            .then(function(customers) {
-                // returns a list of users
-                vm.allCustomers = customers;
-                console.log(vm.allCustomers);
-            });
-    }
-
-    vm.topDirections = ['left', 'up'];
-    vm.bottomDirections = ['down', 'right'];
-    vm.isOpen = true;
-    vm.selectedMode = 'md-scale';
-    vm.selectedDirection = 'left';
-
-}
-
 })();

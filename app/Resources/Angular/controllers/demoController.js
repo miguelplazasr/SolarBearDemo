@@ -11,7 +11,8 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         {
             link : '',
             title: 'Dashboard',
-            icon: 'dashboard'
+            icon: 'dashboard',
+            sref: 'home.customer'
         },
         {
             link : '',
@@ -69,6 +70,7 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
         },
     ];
     $scope.alert = '';
+
     $scope.showListBottomSheet = function($event) {
         $scope.alert = '';
         $mdBottomSheet.show({

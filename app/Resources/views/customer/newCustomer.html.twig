@@ -1,10 +1,35 @@
-{{ form_start(form, {'attr': {'ng-submit': 'saveAddress(newAddress)'}}) }}
+{% form_theme form _self %}
+<div ng-cloak>
+    <md-card>
+        {{ form_start(form, {'attr': {'ng-submit': 'vm.saveCustomer(newCustomer)'}}) }}
 
-<div class="box-body">
-    {{ form_widget(form) }}
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{ 'customer' |trans }}</span>
+                <span class="md-subhead">{{ 'new' |trans }}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            {%- block form_row -%}
+                <md-input-container class="md-block" flex-gt-sm>
+                    {{- form_label(form) -}}
+                    {{- form_errors(form) -}}
+                    {{- form_widget(form) -}}
+                </md-input-container>
+            {%- endblock form_row -%}
+        </md-card-content>
 
-</div><!-- /.box-body -->
+        <div layout="row" layout-sm="column" layout-align="space-around" ng-show="vm.saving" >
+            <md-progress-circular md-mode="indeterminate" md-diameter="96"></md-progress-circular>
+        </div>
 
-<div class="box-footer">
-    <button type="submit" class="btn btn-primary" >Submit</button>
+
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button type="submit" class="md-raised md-primary" aria-label="Save Customer">
+                <ng-md-icon icon="save"></ng-md-icon>
+                Submit
+            </md-button>
+        </md-card-actions>
+
+    </md-card>
 </div>

@@ -1,42 +1,53 @@
-/**
- * Created by miguelplazas on 30/04/16.
- */
+(function(){
+    'use strict';
 
-angular.module('SolarBearApp')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
+    angular.
+        module('SolarBearApp').
+        controller('Home.MainCtrl', Controller);
 
-function MasterCtrl($scope, $cookieStore) {
-    /**
-     * Sidebar Toggle & Cookie Control
-     */
-    var mobileView = 992;
+    function Controller( $mdBottomSheet, $mdSidenav, $mdDialog, Restangular) {
 
-    $scope.getWidth = function() {
-        return window.innerWidth;
-    };
+        var vm = this;
 
-    $scope.$watch($scope.getWidth, function(newValue, oldValue) {
-        if (newValue >= mobileView) {
-            if (angular.isDefined($cookieStore.get('toggle'))) {
-                $scope.toggle = ! $cookieStore.get('toggle') ? false : true;
-            } else {
-                $scope.toggle = true;
-            }
-        } else {
-            $scope.toggle = false;
+        initController();
+
+        function initController() {
+
+            toogleSidenav();
+            mainMenu();
+
         }
 
-    });
+        function toogleSidenav() {
+            vm.toggleSidenav = function(menuId){
+                $mdSidenav(menuId).toggle();
+                console.log('Press it!');
+            }
+        }
 
-    $scope.toggleSidebar = function() {
-        $scope.toggle = !$scope.toggle;
-        $cookieStore.put('toggle', $scope.toggle);
-    };
+        function mainMenu() {
+            vm.menu = [
+                {
+                    link : 'dashboard',
+                    title: 'Dashboard',
+                    icon: 'dashboard',
+                    sref: 'home'
+                },
+                {
+                    link : 'home.customer',
+                    title: 'Customers',
+                    icon: 'group',
+                    sref: 'home.customer_list'
+                },
+                {
+                    link : 'home.customer.new',
+                    title: 'Leads',
+                    icon: 'message',
+                    sref: 'home.customer_new'
+                }
+            ];
+        }
 
-    window.onresize = function() {
-        $scope.$apply();
-    };
+    }
 
-
-    $scope.title = 'Trabaja!';
-}
+})();

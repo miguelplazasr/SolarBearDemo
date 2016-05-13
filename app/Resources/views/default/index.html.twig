@@ -1,2 +1,8 @@
-<h1>Home</h1>
-    {{ title }}
+{% extends('::layout_01.html.twig') %}
+
+{% block content %}
+{% block body %}
+    <div ui-view layout="row"></div>
+{% endblock %}
+
+{% endblock content %}
