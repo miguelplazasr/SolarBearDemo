@@ -1,31 +1,35 @@
-<md-dialog aria-label="Mango (Fruit)" ng-cloak ng-controller="Customer.MainCtrl">
+{% form_theme form _self %}
+<div ng-cloak>
+    <md-card>
+        {{ form_start(form, {'attr': {'ng-submit': 'vm.saveCustomer(newCustomer)'}}) }}
+
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{ 'customer' |trans }}</span>
+                <span class="md-subhead">{{ 'new' |trans }}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            {%- block form_row -%}
+                <md-input-container class="md-block" flex-gt-sm>
+                    {{- form_label(form) -}}
+                    {{- form_errors(form) -}}
+                    {{- form_widget(form) -}}
+                </md-input-container>
+            {%- endblock form_row -%}
+        </md-card-content>
+
+        <div layout="row" layout-sm="column" layout-align="space-around" ng-show="vm.saving" >
+            <md-progress-circular md-mode="indeterminate" md-diameter="96"></md-progress-circular>
+        </div>
 
 
-    {{ form_start(form, {'attr': {'ng-submit': 'saveAddress(newAddress)'}}) }}
-
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>[[ vm.title ]]</h2>
-            <span flex></span>
-            <md-button class="md-icon-button" ng-click="cancel()">
-                <md-icon md-svg-src="" aria-label="Close dialog"></md-icon>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button type="submit" class="md-raised md-primary" aria-label="Save Customer">
+                <ng-md-icon icon="save"></ng-md-icon>
+                Submit
             </md-button>
-        </div>
-    </md-toolbar>
+        </md-card-actions>
 
-    <md-dialog-content>
-        <div class="md-dialog-content">
-
-            {{ form_widget(form) }}
-        </div>
-
-    </md-dialog-content>
-    <md-dialog-actions layout="row">
-        <md-button type="submit" class="btn btn-primary">Submit</md-button>
-        <md-button ng-click="cancel()">Cancel</md-button>
-        <md-button ng-click="vm.cancel()">Cancel vm</md-button>
-        <md-button ng-click="vm.closeDialog()"> Close</md-button>
-        <span flex></span>
-    </md-dialog-actions>
-    </md-dialog-content>
-</md-dialog>
+    </md-card>
+</div>

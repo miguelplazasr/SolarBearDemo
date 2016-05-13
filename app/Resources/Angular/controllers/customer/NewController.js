@@ -6,41 +6,47 @@
 
     angular.module('SolarBearApp').controller('Customer.NewCtrl', Controller);
     
-    function Controller($state, $mdDialog,dataToPass, Restangular){
+    function Controller($state, $mdToast, Restangular){
 
         var vm = this;
+        var formCopy = {};
         var baseCustomer = Restangular.all('customers');
+        vm.saving = false;
 
         initController();
 
-        vm.closeDialog = closeDialog;
+        //vm.saveCustomer = saveCustomer(newCustomer);
+
 
         function initController() {
-
-            dialogController();
-            closeDialog();
             console.log('Customer.NewCtrl Aqui toy!');
             // reload alerts when updated
             //vm.$on('alerts-updated', loadCustomers);
         }
 
-        function closeDialog() {
-            console.log('me cierro!');
-            //$state.go('home');
+        vm.saveCustomer = function (rsCustomer) {
+
+            vm.saving = true;
+             formCopy = angular.copy(rsCustomer);
+
+            baseCustomer.post(rsCustomer).then(function(){
+                console.log('Customer saved OK');
+            }, function(){
+                console.log('here was an error saving');
+            });
+
+            vm.saving = false;
+
+            $mdToast.show({
+                template: '<md-toast><span flex>Custom toast!</span></md-toast>',
+                hideDelay: 6000,
+                position: "bottom left"
+            });
+
         }
 
-        function dialogController($mdDialog) {
-            vm.hide = function () {
-                $mdDialog.hide();
-            };
-            vm.cancel = function () {
-                console.log('test');
-                $mdDialog.cancel();
-            };
-            vm.answer = function (answer) {
-                $mdDialog.hide(answer);
-            };
-        }
+
+        
         
     }
 })();

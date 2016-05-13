@@ -68,7 +68,17 @@ class CustomerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Customer'
+            //'data_class' => 'AppBundle\Entity\Customer',
+            'csrf_protection' => false,
+            'allow_extra_fields' => true,
         ));
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'customer';
     }
 }

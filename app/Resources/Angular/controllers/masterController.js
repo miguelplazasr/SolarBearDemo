@@ -28,7 +28,7 @@
         function mainMenu() {
             vm.menu = [
                 {
-                    link : 'home',
+                    link : 'dashboard',
                     title: 'Dashboard',
                     icon: 'dashboard',
                     sref: 'home'
@@ -37,12 +37,13 @@
                     link : 'home.customer',
                     title: 'Customers',
                     icon: 'group',
-                    sref: 'home.customer'
+                    sref: 'home.customer_list'
                 },
                 {
-                    link : '',
-                    title: 'Messages',
-                    icon: 'message'
+                    link : 'home.customer.new',
+                    title: 'Leads',
+                    icon: 'message',
+                    sref: 'home.customer_new'
                 }
             ];
         }

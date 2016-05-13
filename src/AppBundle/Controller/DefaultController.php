@@ -16,7 +16,7 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         //return $this->redirectToRoute('nelmio_api_doc_index', array(), 301);
 
-        return $this->render('::layout_01.html.twig');
+        return $this->render(':default:index.html.twig');
     }
 
     /**
@@ -25,6 +25,15 @@ class DefaultController extends Controller
     public function tablesAction(){
 
         return $this->render(':default:_main.html.twig');
+
+    }
+
+    /**
+     * @Route("/dashboard", name="dashboard", options={"expose"=true})
+     */
+    public function dashboardAction(){
+
+        return $this->render(':default:dashboard.html.twig');
 
     }
 }

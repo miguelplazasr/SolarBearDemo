@@ -8,6 +8,7 @@
 var app = angular.module('SolarBearApp',
     [
         'ngMaterial',
+        'ngAnimate',
         'ngMdIcons',
         'ngMessages',
         'ui.router',
@@ -64,6 +65,7 @@ app.config([
                 controllerAs: 'vm'
 
             })
+
             /*
              .state('home.sidebar', {
              url: '/sidenavbar',
@@ -73,46 +75,48 @@ app.config([
              })
              */
 
-            .state('home.customer', {
+            .state('home.customer_list', {
                 url: '/customer',
                 templateUrl: '/api/customers',
                 controller: "Customer.MainCtrl",
                 controllerAs: "vm"
             })
 
-            .state('home.customer.new', {
-                //url: '/new',
-                //controller: "Customer.NewCtrl",
-                //controllerAs: "vm",
-                onEnter: function ( $mdDialog) {
-                    var ev = null; // this should be the $event 
-                    $mdDialog.show({
-                            controller: "Customer.NewCtrl",
-                            controllerAs: "vm",
-                            //scope: $scope.parentScopeData,
-                        locals:{dataToPass: $mdDialog},
-                        //parent: angular.element(document.body),
-                        //bindToController:true,
-
-                        templateUrl: '/api/customers/new.html',
-                            //parent: angular.element(document.body),
-                            targetEvent: ev,
-                            clickOutsideToClose: true,
-                        }
-                    ).then(function(answer) {
-                        // Noop
-                    }, function() {
-                        $scope.status = 'You cancelled the dialog.';
-                    });
-                }
+        
+            .state('home.customer_new', {
+                url: '/new',
+                templateUrl: '/api/customers/new.html',
+                controller: "Customer.NewCtrl",
+                controllerAs: "vm"
             })
 
-        /*
+
+        /* Dialog on states Example
          .state('home.customer.new', {
-         url: '/new',
-         templateUrl: '/api/customers/new',
+         //url: '/new',
+         //controller: "Customer.NewCtrl",
+         //controllerAs: "vm",
+         onEnter: function ( $mdDialog) {
+         var ev = null; // this should be the $event 
+         $mdDialog.show({
          controller: "Customer.NewCtrl",
-         controllerAs: "vm"
+         controllerAs: "vm",
+         //scope: $scope.parentScopeData,
+         locals:{dataToPass: $mdDialog},
+         //parent: angular.element(document.body),
+         //bindToController:true,
+
+         templateUrl: '/api/customers/new.html',
+         //parent: angular.element(document.body),
+         targetEvent: ev,
+         clickOutsideToClose: true,
+         }
+         ).then(function(answer) {
+         // Noop
+         }, function() {
+         $scope.status = 'You cancelled the dialog.';
+         });
+         }
          })
          */
 
