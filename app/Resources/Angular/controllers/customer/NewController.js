@@ -42,6 +42,8 @@
                 hideDelay: 6000,
                 position: "bottom left"
             });
+            
+            $state.go('home.appointment_new');
 
         }
 

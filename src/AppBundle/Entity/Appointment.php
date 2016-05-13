@@ -250,4 +250,5 @@ class Appointment {
     {
         return $this->customer;
     }
+
 }

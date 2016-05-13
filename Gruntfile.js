@@ -20,7 +20,8 @@ module.exports = function (grunt) {
                     'app/Resources/public/min-safe/js/controllers.js': [
                         'app/Resources/Angular/controllers/masterController.js',
                         'app/Resources/Angular/controllers/customer/MainController.js',
-                        'app/Resources/Angular/controllers/customer/NewController.js'
+                        'app/Resources/Angular/controllers/customer/NewController.js',
+                        'app/Resources/Angular/controllers/appointment/NewController.js'
                     ],
                     'app/Resources/public/min-safe/app.js': ['app/Resources/Angular/app.js']
                 }
@@ -148,7 +149,7 @@ module.exports = function (grunt) {
 
         watch: {
             angularJs: {
-                files: 'app/Resources/Angular/**/*.js',
+                files: ['Gruntfile.js', 'app/Resources/Angular/**/*.js'],
                 tasks: ['ngAnnotate', 'concat:app', 'uglify:app']
             }
 

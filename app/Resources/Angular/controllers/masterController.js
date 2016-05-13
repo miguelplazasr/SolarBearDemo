@@ -44,6 +44,12 @@
                     title: 'Leads',
                     icon: 'message',
                     sref: 'home.customer_new'
+                },
+                {
+                    link : 'home.appointment.new',
+                    title: 'Appointments',
+                    icon: 'message',
+                    sref: 'home.appointment_new'
                 }
             ];
         }

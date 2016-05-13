@@ -23,25 +23,9 @@ app.config(function ($interpolateProvider) {
 
 
 app.config(function (RestangularProvider) {
+
     RestangularProvider.setBaseUrl('/api');
 
-    //RestangularProvider.setDefaultHttpFields({cache: true});
-
-    /*
-     RestangularProvider.addResponseInterceptor(function (data, operation, what, url, response, deferred) {
-     var newResponse = response;
-
-     console.log(data);
-
-     if (operation === "getList") {
-     angular.forEach(newResponse, function (value, key) {
-     newResponse[key].originalElement = angular.copy(value);
-     });
-     } else {
-     newResponse.originalElement = angular.copy(response);
-     }
-     return newResponse;
-     });*/
 });
 
 /**
@@ -66,27 +50,24 @@ app.config([
 
             })
 
-            /*
-             .state('home.sidebar', {
-             url: '/sidenavbar',
-             templateUrl: '/sidenavbar',
-             controller: "MainCtrl",
-             controllerAs: "vm"
-             })
-             */
-
             .state('home.customer_list', {
                 url: '/customer',
                 templateUrl: '/api/customers',
                 controller: "Customer.MainCtrl",
                 controllerAs: "vm"
             })
-
         
             .state('home.customer_new', {
-                url: '/new',
+                url: '/customer/new',
                 templateUrl: '/api/customers/new.html',
                 controller: "Customer.NewCtrl",
+                controllerAs: "vm"
+            })
+
+            .state('home.appointment_new', {
+                url: '/appointment/new',
+                templateUrl: '/api/appointments/new.html',
+                controller: "Appointment.NewCtrl",
                 controllerAs: "vm"
             })
 
@@ -151,14 +132,3 @@ app.config(function ($mdThemingProvider) {
         .primaryPalette('grey')
 });
 
-/* Theming Configuration */
-/*app.config(function ($mdThemingProvider) {
- $mdThemingProvider.theme('default')
- .primaryPalette('blue', {
- 'default': '900'
- })
- .accentPalette('green', {
- 'default': '800'
- })
- });
- */
