@@ -23,3 +23,10 @@ app_customer:
     prefix:   /api
     options:
         expose: true
+
+app_appointment:
+    type: rest
+    resource: AppBundle\Controller\AppointmentController
+    prefix:   /api
+    options:
+        expose: true

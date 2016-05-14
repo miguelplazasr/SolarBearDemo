@@ -1,0 +1,27 @@
+
+{%- block form_row -%}
+    <md-input-container class="md-block" flex-gt-sm>
+        {{- form_label(form) -}}
+        {{- form_errors(form) -}}
+        {{- form_widget(form) -}}
+    </md-input-container>
+{%- endblock form_row -%}
+
+
+{%- block date_widget -%}
+    {% if widget == 'single_text' %}
+        {{- block('form_widget_mddate') -}}
+    {%- else -%}
+        <md-datepicker {{ block('widget_container_attributes') }}>
+            {{- form_errors(form.date) -}}
+            {{- form_errors(form.time) -}}
+            {{- form_widget(form.date) -}}
+            {{- form_widget(form.time) -}}
+        </md-datepicker>
+    {%- endif -%}
+{%- endblock date_widget -%}
+
+
+{%- block form_widget_mddate -%}
+    <md-datepicker {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}></md-datepicker>
+{%- endblock form_widget_mddate -%}

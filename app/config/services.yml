@@ -2,14 +2,17 @@ parameters:
     # List Entity class
     app.entity.demo: AppBundle\Entity\Demo
     app.entity.customer: AppBundle\Entity\Customer
+    app.entity.appointment: AppBundle\Entity\Appointment
 
     # List Handlers class
     app.handler.demo: AppBundle\Handler\DemoHandler
     app.handler.customer: AppBundle\Handler\CustomerHandler
+    app.handler.appointment: AppBundle\Handler\AppointmentHandler
 
     # List FormType class
     app.form.type.demo: AppBundle\Form\DemoType
     app.form.type.customer: AppBundle\Form\CustomerType
+    app.form.type.appointment: AppBundle\Form\AppointmentType
 
 services:
 
@@ -29,6 +32,14 @@ services:
         class: "%app.handler.customer%"
         parent: app.entity_manager
         arguments: ["%app.entity.customer%", "%app.form.type.customer%" ]
+
+    # Appointment Handler
+    app.handler.appointment:
+        class: "%app.handler.appointment%"
+        parent: app.entity_manager
+        arguments: ["%app.entity.appointment%", "%app.form.type.appointment%" ]
+
+
 
 
 

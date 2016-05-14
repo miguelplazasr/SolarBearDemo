@@ -38,10 +38,12 @@
             vm.saving = false;
 
             $mdToast.show({
-                template: '<md-toast><span flex>Custom toast!</span></md-toast>',
+                template: '<md-toast><span flex>Customer data saved!</span></md-toast>',
                 hideDelay: 6000,
                 position: "bottom left"
             });
+            
+            $state.go('home.appointment_new');
 
         }
 

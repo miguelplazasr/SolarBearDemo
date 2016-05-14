@@ -9,9 +9,10 @@
 namespace AppBundle\Handler;
 
 
-use AppBundle\Form\InvalidFormException;
+use AppBundle\Form\FormErrors;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class EntityHandler implements HandlerInterface
 {
@@ -92,20 +93,21 @@ class EntityHandler implements HandlerInterface
 
         $form->submit($parameters, "PATCH" !== $method);
 
-        dump($form);
 
-        if ($form->isValid()) {
+        if (!$form->isValid()) {
 
-            $entity = $form->getData();
+            $errors = new FormErrors();
 
-            $this->em->persist($entity);
-            $this->em->flush($entity);
 
-            return $entity;
-
+            return new JsonResponse($errors->getArray($form), 400);
         }
 
-        throw new InvalidFormException('Invalid submitted data', $form);
+        $entity = $form->getData();
+
+        $this->em->persist($entity);
+        $this->em->flush($entity);
+
+        return $entity;
 
     }
 
@@ -128,12 +130,14 @@ class EntityHandler implements HandlerInterface
     public function entityPrefix()
     {
         $prefix = explode('\\', $this->entityClass);
+
         return strtolower(end($prefix));
     }
 
     public function entityName()
     {
         $prefix = explode('\\', $this->entityClass);
+
         return end($prefix);
     }
 

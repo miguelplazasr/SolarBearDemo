@@ -34,16 +34,16 @@
                     sref: 'home'
                 },
                 {
-                    link : 'home.customer',
+                    link : 'home.customer.new',
                     title: 'Customers',
                     icon: 'group',
-                    sref: 'home.customer_list'
+                    sref: 'home.customer_new'
                 },
                 {
-                    link : 'home.customer.new',
-                    title: 'Leads',
-                    icon: 'message',
-                    sref: 'home.customer_new'
+                    link : 'home.appointment.new',
+                    title: 'Appointments',
+                    icon: 'alarm',
+                    sref: 'home.appointment_new'
                 }
             ];
         }

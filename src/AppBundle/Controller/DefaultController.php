@@ -24,7 +24,16 @@ class DefaultController extends Controller
      */
     public function tablesAction(){
 
-        return $this->render(':default:_main.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $customers = $em->getRepository('AppBundle:Customer')->count();
+
+        $appointments = $em->getRepository('AppBundle:Appointment')->count();
+
+        return $this->render(':default:_main.html.twig', array(
+            'customers' => $customers,
+            'appointment' => $appointments
+        ));
 
     }
 

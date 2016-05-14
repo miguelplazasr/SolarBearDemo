@@ -93,13 +93,20 @@ class Customer {
     protected $home_phone;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      * @Assert\NotBlank()
      * @Assert\Length( max = "100" )
      * @Expose
      */
 
     protected $email;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Appointment", mappedBy="customer", cascade={"persist", "remove"})
+     */
+    Private $appointments;
+
+    
 
     /**
      * @var datetime $created

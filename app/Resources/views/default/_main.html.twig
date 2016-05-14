@@ -1,15 +1,15 @@
-
 <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
             md-is-locked-open="$mdMedia('gt-md')">
     <md-toolbar class="md-tall md-hue-2">
         <span flex></span>
 
         <div layout="column" class="md-toolbar-tools-bottom inset">
-            <user-avatar></user-avatar>
+            <user-avatar><img src="{{ asset('assets/img/logo_234.png') }}" alt=""></user-avatar>
             <span></span>
-
+            <!--
             <div>Firstname Lastname</div>
             <div>email@domainname.com</div>
+            -->
         </div>
     </md-toolbar>
 
@@ -59,23 +59,39 @@
         </div>
     </md-toolbar>
 
-    <md-content flex >
+    <md-content flex>
 
         <ui-view layout="column" layout-fill layout-padding>
             <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Card with image</span>
-                        <span class="md-subhead">Large</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-lg card-media"></div>
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button>Action 1</md-button>
-                    <md-button>Action 2</md-button>
-                </md-card-actions>
+                        <!-- small box -->
+                        <div class="col-lg-3 col-xs-6">
+                            <div class="small-box bg-aqua">
+                                <div class="inner">
+                                    <h3>{{ customers }}</h3>
+                                    <p>New Customers</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-person-stalker"></i>
+                                </div>
+                                <a ui-sref="home.customer_list" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+            </md-card>
+
+            <md-card>
+                <!-- small box -->
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>{{ appointment }}</h3>
+                            <p>New Appointments</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-alarm-outline"></i>
+                        </div>
+                        <a ui-sref="home.appointment_list" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
             </md-card>
         </ui-view>
     </md-content>
