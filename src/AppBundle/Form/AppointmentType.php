@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -27,13 +28,23 @@ class AppointmentType extends AbstractType
                     'ng-model' => 'newAppointment.date'
                 )
             ))
-            ->add('rental_property', TextType::class, array(
+            ->add('rental_property', ChoiceType::class, array(
+                'choices' => array(
+                    'Yes' => 'Yes',
+                    'No' => 'No'
+                ),
+                'choices_as_values' => true,
+
                 'translation_domain' => 'AppBundle',
                 'attr' => array(
                     'ng-model' => 'newAppointment.rental_property'
                 )
             ))
-            ->add('owner', TextType::class, array(
+            ->add('owner', ChoiceType::class, array(
+                'choices' => array(
+                    'Yes' => 'Yes',
+                    'No' => 'No'
+                ),
                 'translation_domain' => 'AppBundle',
                 'attr' => array(
                     'ng-model' => 'newAppointment.owner'

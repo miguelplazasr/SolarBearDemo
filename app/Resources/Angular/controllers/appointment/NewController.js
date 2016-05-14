@@ -22,16 +22,30 @@
 
         vm.saveAppointment = function (rsAppointment) {
 
+            vm.saving = true;
             formCopy = angular.copy(rsAppointment);
 
-            //rsAppointment.date = $filter('date')(rsAppointment.date,'yyyy-MM-dd');
+            rsAppointment.date = $filter('date')(rsAppointment.date,'yyyy-MM-dd');
             
-            console.log(rsAppointment.date);
-
             baseAppointment.post(rsAppointment).then(function () {
                 console.log('Appointment saved OK');
+
+                $mdToast.show({
+                    template: '<md-toast><span flex>Saved!</span></md-toast>',
+                    hideDelay: 6000,
+                    position: "bottom left"
+                });
+                vm.saving = false;
+                
             }, function () {
                 console.log('here was an error saving');
+
+                $mdToast.show({
+                    template: '<md-toast><span flex>Here was an error saving!</span></md-toast>',
+                    hideDelay: 6000,
+                    position: "bottom left"
+                });
+                vm.saving = false;
             });
 
         }

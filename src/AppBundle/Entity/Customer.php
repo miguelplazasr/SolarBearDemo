@@ -93,7 +93,7 @@ class Customer {
     protected $home_phone;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      * @Assert\NotBlank()
      * @Assert\Length( max = "100" )
      * @Expose
