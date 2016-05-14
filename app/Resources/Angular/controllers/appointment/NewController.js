@@ -7,7 +7,7 @@
 
     angular.module('SolarBearApp').controller('Appointment.NewCtrl', Controller);
 
-    function Controller($state, $mdToast, $filter, Restangular) {
+    function Controller($scope, $state, $mdToast, $filter, Restangular) {
 
         var vm = this;
         var formCopy = {};
@@ -31,11 +31,14 @@
                 console.log('Appointment saved OK');
 
                 $mdToast.show({
-                    template: '<md-toast><span flex>Saved!</span></md-toast>',
+                    template: '<md-toast><span flex>Appointment data saved!</span></md-toast>',
                     hideDelay: 6000,
                     position: "bottom left"
                 });
-                vm.saving = false;
+                
+                $scope.$emit('appointments-updated');
+
+                $state.go('home');
                 
             }, function () {
                 console.log('here was an error saving');

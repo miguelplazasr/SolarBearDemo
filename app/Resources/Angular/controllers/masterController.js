@@ -5,17 +5,24 @@
         module('SolarBearApp').
         controller('Home.MainCtrl', Controller);
 
-    function Controller( $mdBottomSheet, $mdSidenav, $mdDialog, Restangular) {
+    function Controller( $scope, $mdBottomSheet, $mdSidenav, $mdDialog, Restangular) {
 
         var vm = this;
 
+        var baseCustomer = Restangular.all('customers');
+        var baseAppointment = Restangular.all('appointments');
+        
         initController();
 
         function initController() {
 
+            $scope.$on('customers-updated', countCustomers);
+            $scope.$on('appointments-updated', countAppointments);
+
             toogleSidenav();
             mainMenu();
-
+            countCustomers();
+            countAppointments();
         }
 
         function toogleSidenav() {
@@ -48,6 +55,21 @@
             ];
         }
 
+        function countCustomers() {
+            baseCustomer.getList()
+                .then(function (customers) {
+                    // returns a list of users
+                    vm.countCustomers = customers.length;
+                });
+        }
+
+        function countAppointments() {
+            baseAppointment.getList()
+                .then(function (appointments) {
+                    // returns a list of users
+                    vm.countAppointments = appointments.length;
+                });
+        }
     }
 
 })();

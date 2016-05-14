@@ -1,12 +1,12 @@
 /**
  * Created by miguelplazas on 12/05/16.
  */
-(function (){
+(function () {
     'use strict';
 
     angular.module('SolarBearApp').controller('Customer.NewCtrl', Controller);
-    
-    function Controller($state, $mdToast, Restangular){
+
+    function Controller($scope, $state, $mdToast, Restangular) {
 
         var vm = this;
         var formCopy = {};
@@ -27,28 +27,37 @@
         vm.saveCustomer = function (rsCustomer) {
 
             vm.saving = true;
-             formCopy = angular.copy(rsCustomer);
+            formCopy = angular.copy(rsCustomer);
 
-            baseCustomer.post(rsCustomer).then(function(){
+            baseCustomer.post(rsCustomer).then(function () {
                 console.log('Customer saved OK');
-            }, function(){
+
+                $mdToast.show({
+                    template: '<md-toast><span flex>Customer data saved!</span></md-toast>',
+                    hideDelay: 6000,
+                    position: "bottom left"
+                });
+
+                $scope.$emit('customers-updated');
+
+                $state.go('home');
+
+            }, function () {
                 console.log('here was an error saving');
+
+                $mdToast.show({
+                    template: '<md-toast><span flex>Here was an error saving!</span></md-toast>',
+                    hideDelay: 6000,
+                    position: "bottom left"
+                });
+                vm.saving = false;
             });
 
-            vm.saving = false;
 
-            $mdToast.show({
-                template: '<md-toast><span flex>Customer data saved!</span></md-toast>',
-                hideDelay: 6000,
-                position: "bottom left"
-            });
             
-            $state.go('home.appointment_new');
 
         }
 
 
-        
-        
     }
 })();

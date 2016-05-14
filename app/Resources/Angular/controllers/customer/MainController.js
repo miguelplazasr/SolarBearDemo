@@ -3,7 +3,7 @@
 
     angular.module('SolarBearApp').controller('Customer.MainCtrl', Controller);
 
-    function Controller( Restangular) {
+    function Controller( $scope, Restangular) {
 
         var vm = this;
         var baseCustomer = Restangular.all('customers');
@@ -14,7 +14,7 @@
 
             loadCustomers();
             // reload alerts when updated
-            //vm.$on('alerts-updated', loadCustomers);
+            $scope.$on('customers-updated', loadCustomers);
         }
 
         function loadCustomers() {
