@@ -6,15 +6,14 @@
         <md-card-header>
         </md-card-header>
         <md-card-content>
-
+            <h2>Appointments</h2>
             <md-list>
                 <md-list-item ng-repeat="item in vm.allAppointments">
-                    <img ng-src="{{ asset('assets/img/male.png') }}" class="md-avatar"
-                         alt="[[ item.first_name ]] [[ item.last_name ]]"/>
 
                     <div class="md-list-item-text">
-                        <h3>[[ item.first_name ]] [[ item.last_name ]]</h3>
-                        <h4>[[ item.address ]]</h4>
+                        <h3>[[ item.date | date:"MM/dd/yyyy" ]] </h3>
+                        <h4>[[ item.customer.first_name ]] [[ item.customer.last_name ]]</h4>
+                        <p>[[ item.notes ]]</p>
                     </div>
                     <md-divider></md-divider>
 
