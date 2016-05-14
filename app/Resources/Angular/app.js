@@ -64,6 +64,13 @@ app.config([
                 controllerAs: "vm"
             })
 
+            .state('home.appointment_list', {
+                url: '/appointment',
+                templateUrl: '/api/appointments',
+                controller: "Appointment.MainCtrl",
+                controllerAs: "vm"
+            })
+
             .state('home.appointment_new', {
                 url: '/appointment/new',
                 templateUrl: '/api/appointments/new.html',

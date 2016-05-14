@@ -10,4 +10,19 @@ namespace AppBundle\Entity;
  */
 class AppointmentRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function queryCount() {
+        $dql = 'SELECT COUNT(a.id) '
+            . 'FROM AppBundle:Appointment a ';
+
+        $query = $this->getEntityManager()->createQuery($dql);
+
+
+        return $query;
+    }
+
+
+    public function count() {
+
+        return $this->queryCount()->getSingleScalarResult();
+    }
 }

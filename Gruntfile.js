@@ -21,6 +21,7 @@ module.exports = function (grunt) {
                         'app/Resources/Angular/controllers/masterController.js',
                         'app/Resources/Angular/controllers/customer/MainController.js',
                         'app/Resources/Angular/controllers/customer/NewController.js',
+                        'app/Resources/Angular/controllers/appointment/MainController.js',
                         'app/Resources/Angular/controllers/appointment/NewController.js'
                     ],
                     'app/Resources/public/min-safe/app.js': ['app/Resources/Angular/app.js']
@@ -98,7 +99,8 @@ module.exports = function (grunt) {
                     'app/Resources/public/assets/css/lib/c3.css',
                     'app/Resources/public/assets/css/lib/ionicons.css',
                     'app/Resources/public/assets/css/lib/main.css',
-                    'app/Resources/public/assets/css/lib/angular-material-icons.css'
+                    'app/Resources/public/assets/css/lib/angular-material-icons.css',
+                    'app/Resources/template/css/admin.css'
                 ],
                 dest: 'app/Resources/public/assets/css/lib.css'
             },
