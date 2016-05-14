@@ -7,7 +7,7 @@
 
     angular.module('SolarBearApp').controller('Appointment.NewCtrl', Controller);
 
-    function Controller($scope, $state, $mdToast, $filter, Restangular) {
+    function Controller($scope, $mdSidenav, $state, $mdToast, $filter, Restangular) {
 
         var vm = this;
         var formCopy = {};
@@ -17,6 +17,7 @@
         initController();
 
         function initController() {
+            $mdSidenav('left').toggle();
             console.log('Appointment.NewCtrl was loaded!');
         }
 

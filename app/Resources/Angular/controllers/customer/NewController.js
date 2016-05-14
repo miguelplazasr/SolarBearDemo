@@ -6,7 +6,7 @@
 
     angular.module('SolarBearApp').controller('Customer.NewCtrl', Controller);
 
-    function Controller($scope, $state, $mdToast, Restangular) {
+    function Controller($scope, $mdSidenav, $state, $mdToast, Restangular) {
 
         var vm = this;
         var formCopy = {};
@@ -19,6 +19,7 @@
 
 
         function initController() {
+            $mdSidenav('left').toggle();
             console.log('Customer.NewCtrl Aqui toy!');
             // reload alerts when updated
             //vm.$on('alerts-updated', loadCustomers);
