@@ -11,6 +11,7 @@
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 /app/phpunit.xml
+/app/config/deploy.rb
 /build/
 /vendor/
 /composer.phar
