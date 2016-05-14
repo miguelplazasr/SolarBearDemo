@@ -7,7 +7,7 @@
 
     angular.module('SolarBearApp').controller('Appointment.NewCtrl', Controller);
 
-    function Controller($state, $mdToast, Restangular) {
+    function Controller($state, $mdToast, $filter, Restangular) {
 
         var vm = this;
         var formCopy = {};
@@ -23,6 +23,10 @@
         vm.saveAppointment = function (rsAppointment) {
 
             formCopy = angular.copy(rsAppointment);
+
+            //rsAppointment.date = $filter('date')(rsAppointment.date,'yyyy-MM-dd');
+            
+            console.log(rsAppointment.date);
 
             baseAppointment.post(rsAppointment).then(function () {
                 console.log('Appointment saved OK');
