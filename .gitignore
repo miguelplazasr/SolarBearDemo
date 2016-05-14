@@ -1,8 +1,5 @@
 /web/bundles/
-/web/dist/
-/web/img/
 /app/Resources/public/
-!/app/Resources/public/template/
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
